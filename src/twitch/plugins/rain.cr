@@ -46,6 +46,7 @@ module ChatBot::Plugins::Rain
       # TODO get rid of static coin
       res = TB::Data::Account.multi_transfer(total: amount, coin: coin, from: from, to: authors, platform: :twitch, memo: :rain)
       if res.is_a?(TB::Data::Error)
+        TB::LOG.debug("Failed to rain #{amount} #{coin.name_short} from #{from} to #{authors} with reason #{res.reason}")
         next bot.reply(msg, ChatBot.mention(name, "Insufficient balance")) if res.reason == "insufficient balance"
         bot.reply(msg, ChatBot.mention(name, "There was a problem trying to transfer funds. Please try again later. If the problem persists, please contact the dev for help in #{coin.prefix}support"))
       else
@@ -61,6 +62,7 @@ module ChatBot::Plugins::Rain
         end
         string = string.rchop(", ")
 
+        TB::LOG.debug("Rained #{amount} #{coin.name_short} (#{amount_each} each) from #{from} to #{authors}")
         reply = "rained a total of #{amount_each * authors.size} #{coin.name_short} (#{amount_each} #{coin.name_short} each) onto #{string}"
         if reply.bytesize > 510 # compare to 512 Bytes
           msgs = split(reply)

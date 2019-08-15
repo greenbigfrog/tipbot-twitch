@@ -14,7 +14,7 @@ shards:
 
   crirc:
     github: greenbigfrog/crirc
-    commit: a542984553118fdc235370a167fb8af95ab3bca8
+    commit: 9046696403fd9bffd4600b2da4b25b21ff710a03
 
   crometheus:
     gitlab: bigforcegun/crometheus

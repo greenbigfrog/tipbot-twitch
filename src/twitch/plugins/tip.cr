@@ -27,9 +27,11 @@ module ChatBot::Plugins::Tip
       res = TB::Data::Account.transfer(amount, coin, from, target_id, :twitch, :tip)
 
       if res.is_a?(TB::Data::Error)
+        TB::LOG.debug("Unable to tip from #{from} to #{target_id} #{amount} #{coin.name_short} for reason #{res.reason}")
         next bot.reply(msg, ChatBot.mention(name, "Insufficient Balance")) if res.reason == "insufficient balance"
         next bot.reply(msg, ChatBot.mention(name, "There was an unexpected error. Please try again later"))
       else
+        TB::LOG.debug("#{from} tipped #{target_id} #{amount} #{coin.name_short}")
         bot.reply(msg, ChatBot.mention(name, "tipped @#{target.display_name || target.login} #{amount} #{coin.name_short}"))
         # TODO whisper target user, if they haven't received a tip ever before, or the command was issues in a whisper
       end

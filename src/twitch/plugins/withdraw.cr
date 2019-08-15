@@ -22,6 +22,7 @@ module ChatBot::Plugins::Withdraw
 
       account = TB::Data::Account.read(:twitch, id)
 
+      TB::LOG.debug("Queued withdrawal for #{account.id} over #{amount} to #{address} #{coin.name_short}")
       TB::Worker::WithdrawalJob.new(platform: "twitch", destination: msg.arguments.to_s, coin: coin.id, user: account.id, address: address, amount: amount).enqueue
     end
   end

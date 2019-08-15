@@ -22,9 +22,11 @@ module ChatBot::Plugins::Donation
       res = TB::Data::Account.transfer(amount, coin, id, 102038420, :twitch, :donation)
 
       if res.is_a?(TB::Data::Error)
+        TB::LOG.debug("User #{id} failed to donate with reason #{res.reason}")
         next bot.reply(msg, ChatBot.mention(name, "Insufficient Balance")) if res.reason == "insufficient balance"
         next bot.reply(msg, ChatBot.mention(name, "There was an unexpected error. Please try again later"))
       else
+        TB::LOG.debug("User #{id} donated #{amount}")
         bot.reply(msg, ChatBot.mention(name, "donated #{amount} #{coin.name_short}!"))
       end
     end

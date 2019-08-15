@@ -45,8 +45,12 @@ module ChatBot
           bot.puts("CAP REQ :twitch.tv/#{capability}")
         end
 
+        TB::LOG.info("Connected to Twitch IRC chat")
+
         # Join all channels that were stored in database during last run
-        TB::Data::TwitchChannel.read_names.each do |channel|
+        channels = TB::Data::TwitchChannel.read_names
+        TB::LOG.info("Joining #{channels.size} channels")
+        channels.each do |channel|
           bot.join(Crirc::Protocol::Chan.new("##{channel}"))
         end
       end
