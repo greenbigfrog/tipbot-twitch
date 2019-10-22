@@ -9,7 +9,9 @@ module ChatBot::Plugins::Balance
       bal = TB::Data::Account.read(:twitch, id).balance(coin)
 
       TB::LOG.debug("#{name} (#{id}) has a balance of #{bal} #{coin.name_short}")
-      bot.reply(msg, "#{name}'s balance is: #{bal} #{coin.name_short}")
+      str = "#{name}'s balance is: #{bal} #{coin.name_short}"
+      str += " PopCorn Please pay attention to this important message: SSSsss #{coin.balance_broadcast} SSSsss" if coin.balance_broadcast
+      bot.reply(msg, str)
     end
   end
 end
