@@ -72,23 +72,6 @@ module ChatBot
 
   extend self
 
-  # Inserts potential deposits during downtime of walletnotify
-  def insert_history_deposits(coin : CoinApi)
-    txlist = coin.list_transactions(1000).as_a
-    return unless txlist.is_a?(Array(JSON::Any))
-    return if txlist.empty?
-
-    txlist.each do |tx|
-      tx = tx.as_h
-      next unless tx.is_a?(Hash(String, JSON::Any))
-
-      next unless tx["category"] == "receive"
-
-      # TODO
-      # db.create_coin_transaction(tx["txid"].to_s)
-    end
-  end
-
   # :nodoc:
   def extract_nick(address : String)
     address.split('!')[0]
