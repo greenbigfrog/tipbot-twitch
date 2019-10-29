@@ -14,7 +14,7 @@ module ChatBot::Plugins::Ping
 
   def bind_ping_command(bot, prefix)
     bot.on(PRIVWHISP, message: /^#{prefix}ping/, doc: {"ping", "respond with pong"}) do |msg|
-      bot.reply(msg, "Pong. The current time is #{Time.now}")
+      bot.reply(msg, "🏓 Pong. Current time: #{Time.now}")
     end
   end
 end
