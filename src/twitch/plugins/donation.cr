@@ -14,7 +14,7 @@ module ChatBot::Plugins::Donation
 
       raise NO_USER_ID unless id = msg.user_id
 
-      amount = parse_amount(coin, :twitch, id, cmd[2])
+      amount = parse_amount(coin, :twitch, id, cmd[1])
       next bot.reply(msg, ChatBot.mention(name, "Please specify a valid amount")) unless amount
       next bot.reply(msg, ChatBot.mention(name, "You have to tip at least #{coin.default_min_tip} #{coin.name_short}")) unless amount >= coin.default_min_tip
 
