@@ -18,7 +18,6 @@ module ChatBot::Plugins::Donation
       next bot.reply(msg, ChatBot.mention(name, "Please specify a valid amount")) unless amount
       next bot.reply(msg, ChatBot.mention(name, "You have to tip at least #{coin.default_min_tip} #{coin.name_short}")) unless amount >= coin.default_min_tip
 
-      # TODO get rid of static coin
       res = TB::Data::Account.transfer(amount, coin, id, 102038420, :twitch, :donation)
 
       if res.is_a?(TB::Data::Error)
