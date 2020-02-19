@@ -1,10 +1,7 @@
 require "twitcr"
 
 class TwitchBot
-  def initialize(@coin : TB::Data::Coin)
-    oauth_token = coin.twitch_oauth_token
-    oauth_id = coin.twitch_oauth_id
-    raise "Missing oauth token or ID" unless oauth_id && oauth_token
+  def initialize(@coin : TB::Data::Coin, oauth_token : String, oauth_id : String)
     @twitch = Twitcr::Client.new(oauth_token, oauth_id)
   end
 

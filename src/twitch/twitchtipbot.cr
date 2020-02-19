@@ -10,14 +10,15 @@ class TwitchTipBot
     end
 
     Raven.capture do
+      oauth_token = ENV["TWITCH_CLIENT_SECRET"]?
+      oauth_id = ENV["TWITCH_CLIENT_ID"]?
+
       TB::Data::Coin.read.each do |coin|
         raven_spawn(name: "#{coin.name_short} Bot") do
           chat_password = coin.twitch_chat_password
-          oauth_token = coin.twitch_oauth_token
-          oauth_id = coin.twitch_oauth_id
           raise "Missing a Twitch related config value" unless chat_password && oauth_token && oauth_id
 
-          TwitchBot.new(coin).start
+          TwitchBot.new(coin, oauth_token.not_nil!, oauth_id.not_nil!).start
         end
       end
     end
