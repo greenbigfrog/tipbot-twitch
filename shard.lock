@@ -6,7 +6,7 @@ shards:
 
   any_hash:
     github: sija/any_hash.cr
-    commit: 1907068cdbfc3ef9759954194472b82f9f19c6e4
+    commit: 0b3a1b3690158c547ebae913634c4cb8b9bfba8d
 
   bitcoin_rpc:
     github: citizen428/bitcoin_rpc
@@ -14,7 +14,7 @@ shards:
 
   crirc:
     github: greenbigfrog/crirc
-    commit: 9046696403fd9bffd4600b2da4b25b21ff710a03
+    commit: 9d806495f2c6bd53ab505b80a35e10be4ad85ca6
 
   crometheus:
     gitlab: bigforcegun/crometheus
@@ -42,7 +42,7 @@ shards:
 
   raven:
     github: sija/raven.cr
-    version: 1.5.5
+    version: 1.6.0
 
   redis:
     github: stefanwille/crystal-redis
@@ -50,13 +50,13 @@ shards:
 
   tb:
     github: greenbigfrog/tipbot-common
-    commit: 0a42e647ffe077f3926198e43d8b50305aa33efe
+    commit: fd04461f4277bc2801d364eafc16a9d30c4e903b
 
   tb-worker:
     github: greenbigfrog/tipbot-worker
-    commit: 9884a6d83c4bcb5ef57892ffd70802ddb97685c1
+    commit: cc715fe90bd5bc570d92ee7eb3f8ff1e4c2a38d5
 
   twitcr:
     github: greenbigfrog/twitcr
-    commit: e611e739d7177fbe5ee404e8b77e00bb584721cc
+    commit: 2f0507f4a35b36a10e869c4fb73f9ac93ddc8064
 

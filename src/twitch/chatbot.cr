@@ -60,7 +60,7 @@ module ChatBot
           m = bot.gets
           break if m.nil?
 
-          puts "[#{Time.now}] #{m}"
+          puts "[#{Time.utc}] #{m}"
           spawn { bot.handle(m.as(String)) }
         rescue IO::Timeout
         end

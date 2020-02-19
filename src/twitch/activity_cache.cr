@@ -18,7 +18,7 @@ class ActivityCache
     end
 
     def older_than?(age : Time::Span)
-      Time.now > seen + age
+      Time.utc > seen + age
     end
   end
 
@@ -28,7 +28,7 @@ class ActivityCache
   end
 
   # Marks the `user_id` as being observed in `room_id` at the given `time`
-  def touch(room_id : Int32, user_id : Int64, time = Time.now)
+  def touch(room_id : Int32, user_id : Int64, time = Time.utc)
     entry = Entry.new(user_id, time)
     return if entry.older_than?(@ttl)
     set = @cache[room_id] ||= Set(Entry).new
