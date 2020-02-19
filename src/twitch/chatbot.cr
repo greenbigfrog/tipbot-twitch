@@ -48,7 +48,7 @@ module ChatBot
         TB::LOG.info("Connected to Twitch IRC chat")
 
         # Join all channels that were stored in database during last run
-        channels = TB::Data::TwitchChannel.read_names
+        channels = TB::Data::TwitchChannel.read_names(coin)
         TB::LOG.info("Joining #{channels.size} channels")
         channels.each do |channel|
           bot.join(Crirc::Protocol::Chan.new("##{channel}"))
